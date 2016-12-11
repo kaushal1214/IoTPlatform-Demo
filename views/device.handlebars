@@ -1,0 +1,44 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h2 class="panel-title">
+			{{device.name}}
+		</h2>
+	</div>
+	<div class="panel-body">
+		<p>{{ Device.description}}</p>
+		<div class="col-md-12 text-left">
+			
+			<label><strong>Unique ID: &nbsp;</strong></label>{{device.id}}
+			<br/>
+			<label><strong>Description: &nbsp;</strong></label>{{device.description}}
+			<br/>
+			<label><strong>Value: &nbsp;</strong></label>{{device.value}}
+				
+		</div>
+	</div>
+	<div class="panel-footer">
+		<div class="row">
+			<div class="col-md-8">
+				Added:
+				<em class="text-muted">{{ timeago device.timestamp}}</em>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<div class="row">
+			<div class="col-md-8">
+				<strong class="panel-title">Meta-Data</strong>
+			</div>
+			<div class="clo-md-4 text-right">
+				<button class="btn btn-default btn-sm" id="btn-comment" data-id="{{image.uniqueId}}">
+					  Update...
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+				
+					
