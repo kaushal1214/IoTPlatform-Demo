@@ -1,4 +1,5 @@
 var Models = require('../models');
+var sidebar = require('../helpers/sidebar');
 
 module.exports ={
 	index: function(req,res){
@@ -13,7 +14,9 @@ module.exports ={
 			if(docs)
 			{
 				viewModel.device =docs;
-				res.render('device',viewModel);
+				sidebar(viewModel,function(viewModel){
+					res.render('device',viewModel);
+				});
 				
 			}
 			else{
@@ -53,13 +56,33 @@ module.exports ={
 		saveDevice();
 		
 	},
-	data: function(req,res){
-		var data= {
-			title: 'DHT11',
-			value:  req.body.data,
-		};
-		res.json(data);
+	values: function(req,res){
+		Models.Devices.findOne({id: {$regex: req.params.device_id}},function(err, docs){
+			if(err){
+				console.log(err);
+			}
+			if(docs)
+			{
+				res.json(docs);
+			
+			}
+			else
+				res.json({});
+		});
+	
 		
+	},
+	data: function(req,res){
+		Models.Devices.update({id:{$regex: req.params.device_id}},{$set:{value:req.body.data}},function(err,docs){
+			if(err) console.log(err);
+			console.log("Data has been updated!");
+		});	
+	},
+	delete: function(req,res){
+		Models.Devices.remove({id:{$regex: req.params.device_id}},function(err,docs){
+			if(err) console.log(err);
+			console.log("Device has been removed.");
+		});
 	},
 	comment: function(req,res){
 		res.send('The image:comment POST controller');

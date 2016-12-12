@@ -21,6 +21,9 @@
 			<div class="col-md-8">
 				Added:
 				<em class="text-muted">{{ timeago device.timestamp}}</em>
+				&nbsp;
+				Last Updated:
+				<em class="text-muted">{{timeago device.timestamp}}</em>
 			</div>
 		</div>
 	</div>
@@ -30,13 +33,20 @@
 	<div class="panel-heading">
 		<div class="row">
 			<div class="col-md-8">
-				<strong class="panel-title">Meta-Data</strong>
+				<strong class="panel-title">Details</strong>
 			</div>
 			<div class="clo-md-4 text-right">
-				<button class="btn btn-default btn-sm" id="btn-comment" data-id="{{image.uniqueId}}">
-					  Update...
+				<button class="btn btn-default btn-sm" id="btn-details" data-id="{{image.uniqueId}}">
+					  Update
 				</button>
 			</div>
+		</div>
+		<div class="panel-body">
+			<blockquote id="device-details">
+				<div class="row">
+				<p>This is some random Text!!</p>
+				</div>
+			</blockquote>
 		</div>
 	</div>
 </div>

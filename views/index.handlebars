@@ -30,3 +30,20 @@
 		</div>
 	</form>
 </div>
+<div class="panel panel-default">
+        <div class="panel-heading">
+                <h3 class=panel-title">Devices List
+                </h3>
+        </div>
+        <div class="panel-body">
+                {{#each Devices}}
+                        <div class="col-md-4 text-center" style="padding-bottom:lem;">
+                                <a href="devices/{{id}}">
+                                        <img src="/public/upload/{{name}}" alt="{{name}}" style="background: #ABC; width: 175px; height: 175px;"
+                                                class="img-thumbnail">
+                                </a>
+                        </div>
+                {{/each}}
+        </div>
+</div>
+
