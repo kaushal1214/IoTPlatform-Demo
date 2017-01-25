@@ -2,15 +2,47 @@
 <html lang="en">
 	<head>
 		<title>
-			imgPloadr.io
+			IoT
 		</title>
+		<style>
+		      #map {
+			         height: 400px;
+		       		 width: 100%;
+       			}
+			#Humid
+			{
+				background-image: url('/public/img/humid.png');
+				background-color: #44BBBB;
+				background-repeat: no-repeat;
+				background-position: center;
+			}
+			#Soil
+			{
+				background-image: url('/public/img/soil.png');
+				background-color: #BB44BB;
+				background-repeat: no-repeat;
+				background-position: center;
+			}
+			#Temp
+			{
+				background-image: url('/public/img/temp.png');
+				background-color: #BBBB44;
+				background-repeat: no-repeat;
+				background-position: center;
+			}
+		    </style>
+
+
 		<link
 		href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/
-		bootstrap.min.css" rel="stylesheet">
+		bootstrap.min.css" rel="stylesheet"></link>
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"></link>
 		<link href="//netdna.bootstrapcdn.com/font-awesome/
-		4.0.3/css/font-awesome.min.css" rel="stylesheet">
+		4.0.3/css/font-awesome.min.css" rel="stylesheet"></link>
 		<link rel="stylesheet" type="text/css"
-		href="/public/css/styles.css">
+			href="/public/css/graph.css"></link>
+		<script src="http://d3js.org/d3.v3.min.js"></script>
+
 	</head>
 	
 	<body>

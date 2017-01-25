@@ -1,5 +1,19 @@
 var Models = require('../models');
 var sidebar = require('../helpers/sidebar');
+//Code for Websocktes
+var websocket = require('ws').Server,
+	wss = new websocket({port:8888});
+var SOCKET =false;
+var socket;
+//Connection Event 
+wss.on('connection', function connection(ws){
+	SOCKET = true;
+	socket = ws;
+	ws.on('message', function incoming(message){
+		console.log('received: %s',message);
+		ws.send('Hello from the server');
+	});
+});
 
 module.exports ={
 	index: function(req,res){
@@ -44,6 +58,9 @@ module.exports ={
 					var newDev = new Models.Devices({
 						name: req.body.title,
 						description: req.body.des,
+						type: req.body.sensors,
+						geolocation:{ latitude :req.body.latt,
+							      longitude:req.body.longi},
 						id: devUrl
 					});
 					newDev.save(function(err,dev){
@@ -72,17 +89,24 @@ module.exports ={
 	
 		
 	},
-	data: function(req,res){
+	data: function(req,res,next){
 		Models.Devices.update({id:{$regex: req.params.device_id}},{$set:{value:req.body.data}},function(err,docs){
 			if(err) console.log(err);
 			console.log("Data has been updated!");
 		});	
+		if(SOCKET)
+		{
+			socket.send("Device: "+req.params.device_id+" New value: "+req.body.data);
+		}
+		res.redirect('');
 	},
+	
 	delete: function(req,res){
 		Models.Devices.remove({id:{$regex: req.params.device_id}},function(err,docs){
 			if(err) console.log(err);
 			console.log("Device has been removed.");
 		});
+		res.send('DELETED');
 	},
 	comment: function(req,res){
 		res.send('The image:comment POST controller');
